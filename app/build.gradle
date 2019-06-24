@@ -52,6 +52,10 @@ android {
             applicationId "io.jqn.builditbigger.free"
         }
     }
+    sourceSets {
+        main { java.srcDirs = ['src/main/java', 'src/free/java/'] } 
+        paid {java.srcDirs = ['src/paid/java', 'src/paid/java/'] }
+    }
 }
 
 dependencies {
