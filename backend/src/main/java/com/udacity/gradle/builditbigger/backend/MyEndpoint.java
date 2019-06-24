@@ -7,6 +7,7 @@ import com.google.api.server.spi.config.ApiNamespace;
 
 import io.jqn.javajokes.Joker;
 
+
 /** An endpoint class we are exposing */
 @Api(
         name = "myApi",
@@ -20,6 +21,7 @@ import io.jqn.javajokes.Joker;
 
 
 public class MyEndpoint {
+    private static final String TAG = "MyEndpoint";
 
     @ApiMethod(name = "getJoke")
     public MyBean getJoke() {

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Pair;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +23,7 @@ import io.jqn.displayjoke.DisplayJokeActivity;
 import io.jqn.javajokes.Joker;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     Joker mJoker;
     String mJoke;
 
@@ -60,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
         new EndpointsAsyncTask().execute(this);
     }
 
-    public void displayJoke() {
+    public void displayJoke(String Joke) {
         Intent intent = new Intent(this, DisplayJokeActivity.class);
-        intent.putExtra("joke", mJoker.getJoke());
+        intent.putExtra("joke", Joke);
         startActivity(intent);
     }
 
@@ -92,17 +93,18 @@ public class MainActivity extends AppCompatActivity {
 
             context = params[0];
 
+
             try {
                 return myApiService.getJoke().execute().getData();
 
             } catch (IOException e) {
-                return e.getMessage();
+                return "";
             }
         }
 
         @Override
         protected void onPostExecute(String result) {
-            displayJoke();
+            displayJoke(result);
         }
     }
 }
